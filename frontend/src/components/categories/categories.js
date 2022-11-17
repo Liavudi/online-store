@@ -7,7 +7,7 @@ export default function Categories({category, imageUrl}) {
   const navigate = useNavigate();
   return (
         <div class='category-container' onClick={() => {navigate(`/${category}`)}}> 
-        <img class='image-size' src={imageUrl} />
+        <img draggable="false" class='image-size' src={imageUrl} />
         <p>{category}</p>
         </div>
   )

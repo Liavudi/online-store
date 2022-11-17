@@ -24,7 +24,7 @@ export default function Items() {
             if (data.categoryName === params.category){
                 return <img src={data.imageUrl}/>
             }
-        })}
+            })}
             </div>
             <Footer />
         </>
