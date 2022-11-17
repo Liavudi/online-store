@@ -13,7 +13,7 @@ const categoriesList = [
 export default function Categories() {
   return (
 
-    <div className='categories-container'>{categoriesList.map((data, key )=> 
+    <div className='categories-container'>{categoriesList.map((data, key ) => 
         (<div className='category-container' key={key} > <img className='image-size' src={data.imageUrl} />{data.categoryName}</div>)
     )}</div>
   )
