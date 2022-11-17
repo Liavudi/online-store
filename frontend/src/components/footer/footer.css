@@ -2,8 +2,9 @@
     background-color: rgba(44, 67, 73, 0.74);
     width: 100%;
     min-height: 50px;
-    bottom: 0;
-    position: absolute;    
     text-align: center;
+    display:flex;
+    flex-direction: column;
+
 }
 

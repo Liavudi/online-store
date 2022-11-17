@@ -1,0 +1,10 @@
+.categories-container{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+     
+}
+.all-content-but-footer {
+    min-height: calc(100vh - 50px);
+}
