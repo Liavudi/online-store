@@ -3,9 +3,11 @@
     display: flex;
     align-items:center;
     justify-content: center;
-    height:1000px;
+    height:800px;
+    flex-wrap: wrap;
 }
 .item-container{
+    flex-wrap: wrap;
     border: solid 1px;
     display: flex;
     flex-direction: column;
@@ -13,6 +15,10 @@
     justify-content: space-evenly;
     width: 60%;
     height: 100%;
+}
+.item-name{
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .image-size{
@@ -23,4 +29,25 @@
 .description{
     direction: rtl;
     width:80%;
+    font-size: 25px;
+}
+
+.item-order-options{
+    align-self: start;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 25%;
+    height: 5%;
+}
+.order-button{
+    height: 120%;
+    background-color: rgb(8, 180, 94);
+    border:none;
+    border-radius: 5px;
+}
+.order-button:hover{
+    cursor: pointer;
+    background-color: rgba(3, 71, 37, 0.719);
+
 }
