@@ -1,5 +1,5 @@
 import {
-Homepage, InsertItem, Items
+Homepage, InsertItem, Items, Item
 } from "./pages";
 
 import { Routes, Route } from "react-router-dom";
@@ -13,6 +13,7 @@ function App() {
       <Route path="/" element={<Homepage />} />
       <Route path="/:category" element={<Items />} />
       <Route path="/insert-new-item" element={<InsertItem />} />
+      <Route path="/:category/item/:id" element={<Item /> } />
     </Routes>
     </div>
 
