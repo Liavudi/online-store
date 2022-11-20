@@ -8,7 +8,7 @@ import "./items.css";
 export default function Items() {
   const [allCategoryItems, setAllCategoryItems] = useState([]);
   const params = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     utils
       .getItemsByCategory(params.category)
@@ -20,8 +20,9 @@ export default function Items() {
       <div
         key={key}
         className="item"
-        onClick={ () => {
-            navigate(`item/${data._id.toString()}`, {replace:true})}}
+        onClick={() => {
+          navigate(`item/${data._id.toString()}`, { replace: true });
+        }}
       >
         <img className="image-size" src={data.image} />
         <label>{data.name}</label>
@@ -31,13 +32,5 @@ export default function Items() {
     );
   });
 
-  return (
-    <>
-      <div className="all-content-but-footer">
-        <NavBar />
-        <div className="items-container">{categoryContent}</div>
-      </div>
-      <Footer />
-    </>
-  );
+  return <div className="items-container">{categoryContent}</div>;
 }
