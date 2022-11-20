@@ -15,7 +15,9 @@ const updateItem = (data, id) => {
 const deleteItem = (id) => {
   axios.delete("http://localhost:8000/api/items/" + id);
 };
-
+const getItemsByCategory = (category) => {
+  return axios.get(`http://localhost:8000/api/items/category/${category}`);
+}
 
 const login = (data) => {
   return axios.post("http://localhost:8000/api/users/me", data);
@@ -24,4 +26,4 @@ const registerUser = (data) => {
   return axios.post("http://localhost:8000/api/users", data);
 };
 
-export default { getItems, getItemById, postItem, deleteItem, updateItem, registerUser, login };
+export default { getItems, getItemById, postItem, deleteItem, updateItem, registerUser, login, getItemsByCategory };

@@ -63,6 +63,17 @@ router.delete("/:id", async (req, res) => {
   res.send("Item was successfully removed");
 });
 
+router.get("/category/:category", async (req, res) => {
+    var category = req.params.category.replace(/-/g, ' ');
+    const items = await Item.find({ category : category })
+    
+  
+    if (!items | items.length <= 0)
+      return res.status(404).send("There are no items found in that category");
+  
+    res.send(items);
+  });
+  
 router.get("/:id", async (req, res) => {
   const item = await Item.findById(req.params.id);
 
@@ -71,5 +82,6 @@ router.get("/:id", async (req, res) => {
 
   res.send(item);
 });
+
 
 module.exports = router;
