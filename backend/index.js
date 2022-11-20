@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true })).use(bodyParser.json());
 
 app.use(cors());
 
-require("./configs/database/mongo-db"); //connect to db
+require("./configs/database/mongo-db"); 
 
 
 
