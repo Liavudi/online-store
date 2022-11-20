@@ -2,16 +2,16 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const express = require("express");
 
-
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true })).use(bodyParser.json());
 
 
+
 app.use(cors());
 
 require("./configs/database/mongo-db"); 
-
+require("./startup/routes")(app);
 
 
 const port = process.env.PORT || 8000;

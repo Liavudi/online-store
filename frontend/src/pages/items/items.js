@@ -18,7 +18,7 @@ export default function Items() {
     const params = useParams()
     return (
         <>
-            <div class="all-content-but-footer">
+            <div className="all-content-but-footer">
             <NavBar />
             {categoriesList.map(data => {
             if (data.categoryName === params.category){

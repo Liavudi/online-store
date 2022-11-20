@@ -1,16 +1,18 @@
 import {
-Homepage, Items
+Homepage, InsertItem, Items
 } from "./pages";
 
 import { Routes, Route } from "react-router-dom";
-import Footer from "./components/footer/footer";
+import FetchNewData from "./hooks/fetch-data";
 
 function App() {
+  FetchNewData();
   return (
-    <div class='App'>
+    <div className='App'>
     <Routes>
       <Route path="/" element={<Homepage />} />
       <Route path="/:category" element={<Items />} />
+      <Route path="/insert-new-item" element={<InsertItem />} />
     </Routes>
     </div>
 
