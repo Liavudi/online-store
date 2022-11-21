@@ -26,6 +26,7 @@ router.post("/", async (req, res) => {
   res.send(user);
 });
 
+// TODO Check if it works at expected (need to implement that it checks both password if they got the same hash)
 router.put("/:id", async (req, res) => {
   const { error } = validate(req.body);
 
@@ -34,10 +35,10 @@ router.put("/:id", async (req, res) => {
   const user = await User.findByIdAndUpdate(
     req.params.id,
     {
-        userName: req.body.userName,
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
+      userName: req.body.userName,
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
     },
     { new: true }
   );

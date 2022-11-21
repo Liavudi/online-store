@@ -74,7 +74,6 @@ router.get("/category/:category", async (req, res) => {
 });
 
 router.get("/search/:items", async (req, res) => {
-  // TODO Fix this search edge-cases, where params = '' app crashes.
   if (req.params.items.length <= 0) {
     return res.status(404).send("The item with the given ID was not found.");
   }
