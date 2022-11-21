@@ -57,13 +57,19 @@ UserSchema.pre("save", async function save(next) {
   }
 });
 
-UserSchema.methods.validatePassword = async function validatePassword(data) {
-  return bcrypt.compare(data, this.password);
-};
+UserSchema.methods.comparePassword = function(password, callback) {
+  bcrypt.compare(password, this.password, function(error, isMatch) {
+    if (error) {
+      return callback(error)
+    } else {
+      callback(null, isMatch)
+    }
+  })
+}
 
 const User = mongoose.model("User", UserSchema);
 
-function validateUser(user) {
+function validateNewUser(user) {
   const schema = Joi.object({
     userName: Joi.string().min(4).max(50).required().lowercase(),
     firstName: Joi.string().min(3).max(50).required(),
@@ -74,6 +80,14 @@ function validateUser(user) {
   });
   return schema.validate(user);
 }
+function validateUser(user) {
+  const schema = Joi.object({
+    userName: Joi.string().min(4).max(50).required().lowercase(),
+    password: Joi.string().required().max(50).min(6),
+  });
+  return schema.validate(user);
+}
 
 exports.User = User;
-exports.validate = validateUser;
+exports.validateNewUser = validateNewUser;
+exports.validateUser = validateUser;
