@@ -17,6 +17,9 @@ const deleteItem = (id) => {
 };
 const getItemsByCategory = (category) => {
   return axios.get(`http://localhost:8000/api/items/category/${category}`);
+};
+const getItemByKeyword = (keyword) => {
+  return axios.get(`http://localhost:8000/api/items/search/${keyword}`);
 }
 
 const login = (data) => {
@@ -26,4 +29,14 @@ const registerUser = (data) => {
   return axios.post("http://localhost:8000/api/users", data);
 };
 
-export default { getItems, getItemById, postItem, deleteItem, updateItem, registerUser, login, getItemsByCategory };
+export default {
+  getItems,
+  getItemById,
+  postItem,
+  deleteItem,
+  updateItem,
+  registerUser,
+  login,
+  getItemsByCategory,
+  getItemByKeyword
+};

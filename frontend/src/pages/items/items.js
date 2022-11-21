@@ -21,7 +21,7 @@ export default function Items() {
         key={key}
         className="item"
         onClick={() => {
-          navigate(`item/${data._id.toString()}`, { replace: true });
+          navigate(`/item/${data._id.toString()}`, { replace: true });
         }}
       >
         <img className="image-size" src={data.image} />

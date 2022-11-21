@@ -5,6 +5,7 @@
     justify-content: center;
     height:800px;
     flex-wrap: wrap;
+    
 }
 .item-container{
     flex-wrap: wrap;
@@ -15,6 +16,8 @@
     justify-content: space-evenly;
     width: 60%;
     height: 100%;
+    box-shadow: 0px 1px 5px 2px;
+    border-radius: 5px;
 }
 .item-name{
     font-size: 30px;

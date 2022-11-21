@@ -64,16 +64,29 @@ router.delete("/:id", async (req, res) => {
 });
 
 router.get("/category/:category", async (req, res) => {
-    var category = req.params.category.replace(/-/g, ' ');
-    const items = await Item.find({ category : category })
-    
+  var category = req.params.category.replace(/-/g, " ");
+  const items = await Item.find({ category: category });
+
+  if (!items | (items.length <= 0))
+    return res.status(404).send("There are no items found in that category");
+
+  res.send(items);
+});
+
+router.get("/search/:items", async (req, res) => {
+  // TODO Fix this search edge-cases, where params = '' app crashes.
+  if (req.params.items.length <= 0){
+    return res.status(404).send("The item with the given ID was not found.");
+  }
+
+  const items = await Item.find({ description: { $regex: req.params.items } });
+
+  if (!items)
+    return res.status(404).send("The item with the given ID was not found.");
   
-    if (!items | items.length <= 0)
-      return res.status(404).send("There are no items found in that category");
-  
-    res.send(items);
-  });
-  
+
+  res.send(items);
+});
 router.get("/:id", async (req, res) => {
   const item = await Item.findById(req.params.id);
 
