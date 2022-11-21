@@ -1,6 +1,7 @@
 import React, {useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Register from "../user-management/register";
+import { Login } from "../user-management/login";
+import {Register} from "../user-management/register";
 import "./nav-bar.css";
 
 export const NavBar = () => {
@@ -30,7 +31,7 @@ export const NavBar = () => {
     </div>
       <div className="register-button">
         <Register />
-        <div>Login</div>
+        <Login />
       </div>
           </div>
   );

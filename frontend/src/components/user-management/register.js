@@ -25,7 +25,8 @@ const schema = yup
     email: yup
       .string()
       .required("Email is required")
-      .max(255, "Email must be at most 255 characters"),
+      .max(255, "Email must be at most 255 characters")
+      .email('Must be a valid email'),
     password: yup
       .string()
       .required("Password is required")
@@ -134,7 +135,7 @@ export const Register = () => {
               </div>
             </div>
             <button className="submit-btn" type="submit" value="Submit">
-              Submit
+              Sign Up
             </button>
           </form>
         </div>
