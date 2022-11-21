@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Register from "../user-management/register";
 import "./nav-bar.css";
@@ -19,7 +19,7 @@ export const NavBar = () => {
         <button
           className="search-button"
           onClick={() => {
-            if (getInputValue.length != 0) {
+            if (getInputValue.length !== 0) {
               navigate(`/search/${getInputValue}`);
             }
           }}

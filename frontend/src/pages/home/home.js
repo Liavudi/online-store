@@ -1,6 +1,4 @@
 import Categories from "../../components/categories/categories";
-import Footer from "../../components/footer/footer";
-import { NavBar } from "../../components/nav-bar/nav-bar";
 import "./home.css";
 
 const categoriesList = [

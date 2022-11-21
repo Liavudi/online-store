@@ -20,7 +20,7 @@ const getItemsByCategory = (category) => {
 };
 const getItemByKeyword = (keyword) => {
   return axios.get(`http://localhost:8000/api/items/search/${keyword}`);
-}
+};
 
 const login = (data) => {
   return axios.post("http://localhost:8000/api/users/me", data);
@@ -39,5 +39,5 @@ export default {
   registerUser,
   login,
   getItemsByCategory,
-  getItemByKeyword
+  getItemByKeyword,
 };

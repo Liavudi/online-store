@@ -12,8 +12,10 @@ router.post("/", async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  let user = await User.findOne({ catalog: req.body.catalog });
+  let user = await User.findOne({ userName: req.body.userName });
   if (user) return res.status(400).send("User already exists.");
+  let email = await User.findOne({ email: req.body.email });
+  if (email) return res.status(400).send("Email already exists.");
 
   user = new User({
     userName: req.body.userName,
@@ -21,6 +23,7 @@ router.post("/", async (req, res) => {
     lastName: req.body.lastName,
     email: req.body.email,
     password: req.body.password,
+    age: req.body.age,
   });
   user = await user.save();
 
@@ -40,6 +43,7 @@ router.put("/:id", async (req, res) => {
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
+      age: req.body.email,
     },
     { new: true }
   );

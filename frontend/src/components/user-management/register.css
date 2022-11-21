@@ -11,10 +11,7 @@
     
 
 }
-.register-inner-container:empty{
-    transition: 4s ease-in-out;
-}
-.register-inner-container:not(:empty){
+.register-inner-container{
     background-color: white;
     width: 45%;
     height: 80%;
@@ -29,7 +26,7 @@
     margin-right: auto;
     border-radius: 5px;
     box-shadow: 0px 0px 10px 2px;
-    transition: 4s ease-in-out;
+ 
 
 }
 
@@ -38,6 +35,7 @@
     justify-content: space-evenly;
     margin: 30px;
     width:100%;
+    flex-wrap: wrap;
     
 }
 .input{
@@ -69,4 +67,11 @@
     font-weight: bold;
     font-size: 25px;
 
+}
+
+.error-message{
+    display: flex;
+    width:100%;
+    justify-content: space-evenly;
+    height: 3%;
 }

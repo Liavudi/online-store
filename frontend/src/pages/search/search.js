@@ -20,7 +20,7 @@ export const Search = () => {
               navigate(`/item/${data._id.toString()}`, { replace: true });
             }}
           >
-            <img className="image-size" src={data.image} />
+            <img alt='' className="image-size" src={data.image} />
             <label>{data.name}</label>
             <label className="item-description">{data.description}</label>
             <label>₪{data.price}</label>

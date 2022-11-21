@@ -36,6 +36,12 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+    minlength: 6,
+  },
+  age: {
+    type: Number,
+    required: true,
+    min: 18,
   },
   isAdmin: Boolean,
 });
@@ -63,7 +69,8 @@ function validateUser(user) {
     firstName: Joi.string().min(3).max(50).required(),
     lastName: Joi.string().min(3).max(50).required(),
     email: Joi.string().max(255).required().lowercase().email(),
-    password: Joi.string().required(),
+    password: Joi.string().required().max(50).min(6),
+    age: Joi.number().required().min(18),
   });
   return schema.validate(user);
 }

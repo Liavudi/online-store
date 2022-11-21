@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Footer from "../../components/footer/footer";
-import { NavBar } from "../../components/nav-bar/nav-bar";
 import utils from "../../api/utils";
 import "./items.css";
 
@@ -24,7 +22,7 @@ export default function Items() {
           navigate(`/item/${data._id.toString()}`, { replace: true });
         }}
       >
-        <img className="image-size" src={data.image} />
+        <img alt="" className="image-size" src={data.image} />
         <label>{data.name}</label>
         <label className="item-description">{data.description}</label>
         <label>₪{data.price}</label>
