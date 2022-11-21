@@ -1,5 +1,5 @@
 const { Item, validate } = require("../models/item");
-const mongoose = require("mongoose");
+
 const express = require("express");
 const router = express.Router();
 
@@ -75,7 +75,7 @@ router.get("/category/:category", async (req, res) => {
 
 router.get("/search/:items", async (req, res) => {
   // TODO Fix this search edge-cases, where params = '' app crashes.
-  if (req.params.items.length <= 0){
+  if (req.params.items.length <= 0) {
     return res.status(404).send("The item with the given ID was not found.");
   }
 
@@ -83,7 +83,6 @@ router.get("/search/:items", async (req, res) => {
 
   if (!items)
     return res.status(404).send("The item with the given ID was not found.");
-  
 
   res.send(items);
 });
@@ -95,6 +94,5 @@ router.get("/:id", async (req, res) => {
 
   res.send(item);
 });
-
 
 module.exports = router;

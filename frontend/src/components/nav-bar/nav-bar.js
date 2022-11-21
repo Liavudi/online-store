@@ -11,21 +11,24 @@ export const NavBar = () => {
   return (
     <div className="navbar-container">
       {/* TODO: make it more elegant by making a search button and when pressing it it opens an input nicely */}
+      <div className='search-components'>
+
       <input
-        className="search-bar"
+        className="search-bar" type='text'
         onChange={(res) => setInputValue(res.target.value)}
-      ></input>
+        ></input>
       <button
         className="search-button"
         onClick={() => {
           if (getInputValue.length != 0){
             navigate(`/search/${getInputValue}`);
-           
+            
           }
         }}
-      >
+        >
         Search
       </button>
+        </div>
     </div>
   );
 };
