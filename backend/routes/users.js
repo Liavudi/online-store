@@ -17,7 +17,8 @@ router.post("/", async (req, res) => {
 
   user = new User({
     userName: req.body.userName,
-    name: req.body.name,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     email: req.body.email,
     password: req.body.password,
   });

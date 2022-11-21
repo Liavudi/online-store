@@ -25,6 +25,7 @@ const getItemByKeyword = (keyword) => {
 const login = (data) => {
   return axios.post("http://localhost:8000/api/users/me", data);
 };
+
 const registerUser = (data) => {
   return axios.post("http://localhost:8000/api/users", data);
 };
