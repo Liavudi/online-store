@@ -22,8 +22,8 @@ const getItemByKeyword = (keyword) => {
   return axios.get(`http://localhost:8000/api/items/search/${keyword}`);
 };
 
-const login = (data) => {
-  return axios.post("http://localhost:8000/api/users/me", data);
+const loginUser = (credentials) => {
+  return axios.post("http://localhost:8000/api/users/login", credentials);
 };
 
 const registerUser = (data) => {
@@ -37,7 +37,7 @@ export default {
   deleteItem,
   updateItem,
   registerUser,
-  login,
+  loginUser,
   getItemsByCategory,
   getItemByKeyword,
 };

@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { Login } from "../user-management/login";
 import {Register} from "../user-management/register";
 import "./nav-bar.css";
+import useToken from "../user-management/usetoken";
 
 export const NavBar = () => {
+  const { token, setToken } = useToken();
   const [getInputValue, setInputValue] = useState("");
   const navigate = useNavigate();
-
   return (
     <div className="navbar-container">
     <div className="navbar">
@@ -29,9 +30,9 @@ export const NavBar = () => {
         </button>
       </div>
     </div>
-      <div className="register-button">
+      <div className="user-buttons">
         <Register />
-        <Login />
+        <Login setToken={setToken}/>
       </div>
           </div>
   );

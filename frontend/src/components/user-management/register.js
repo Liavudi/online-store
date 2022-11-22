@@ -55,8 +55,10 @@ export const Register = () => {
     });
   };
   const onError = (errors, e) => console.log(errors, e);
-
+  const tokenString = localStorage.getItem("token");
+  const userToken = JSON.parse(tokenString);
   return (
+    <>{tokenString? '': 
     <div>
       <div
         className="register-div"
@@ -73,24 +75,24 @@ export const Register = () => {
               setRegisterComponent(!showRegisterComponent);
             }}
             className="register-container"
-          ></div>
+            ></div>
           <form
             className="register-inner-container"
             onSubmit={handleSubmit(onSubmit, onError)}
-          >
+            >
             <div className="title">Sign Up</div>
             <div className="input-order">
               <input
                 className="input"
                 placeholder="First Name"
                 {...register("firstName")}
-              />
+                />
 
               <input
                 className="input"
                 placeholder="Last Name"
                 {...register("lastName")}
-              />
+                />
 
               <div className="error-message">
                 <p>{errors.firstName?.message}</p>
@@ -102,13 +104,13 @@ export const Register = () => {
                 className="input"
                 placeholder="Username"
                 {...register("userName")}
-              />
+                />
 
               <input
                 className="input"
                 placeholder="Email"
                 {...register("email")}
-              />
+                />
 
               <div className="error-message">
                 <p>{errors.userName?.message}</p>
@@ -128,7 +130,7 @@ export const Register = () => {
                 type="number"
                 placeholder="Age"
                 {...register("age")}
-              />
+                />
               <div className="error-message">
                 <p>{errors.password?.message}</p>
                 <p>{errors.age?.message}</p>
@@ -141,8 +143,10 @@ export const Register = () => {
         </div>
       ) : (
         ""
-      )}
+        )}
     </div>
+  }
+    </>
   );
 };
 

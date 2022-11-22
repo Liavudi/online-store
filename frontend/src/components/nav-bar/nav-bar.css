@@ -37,7 +37,7 @@
     cursor: pointer;
 }
 
-.register-button{
+.user-buttons{
     display: flex;
     justify-content: space-evenly;   
     justify-self: flex-start;

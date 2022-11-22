@@ -68,30 +68,26 @@ router.post("/login", async (req, res) => {
   // console.log(req.body);
   const { error } = validateUser(req.body);
   if (error) return res.status(400).send(error.details[0].message);
-  let user = await User.findOne({ userName: req.body.userName }).exec(function (
-    error,
+  User.findOne({ userName: req.body.userName }).exec(function (
+    err,
     user
   ) {
-    if (error) {
-      callback({ error: true });
-    } else if (!user) {
-      callback({ error: true });
-    } else {
-      user.comparePassword(req.body.password, function (matchError, isMatch) {
-        if (matchError) {
-          callback({ error: true });
-        } else if (!isMatch) {
-          callback({ error: true });
-        } else {
-          callback({ success: true });
-        }
-      });
+    if (err) throw err;
+    if (user === null) {
+      return res.status(400).send("Username doesn't exists.");
     }
+    user.comparePassword(req.body.password, function (matchError,isMatch) {
+      if (matchError){
+        return console.log(matchError)
+      }
+      if (!isMatch) {
+        return res.status(400).send('Invalid password, please try again.')
+      }
+      if (isMatch) {
+        return res.status(200).send({token: user.userName});
+      }
+    });
   });
-
-  if (user === null) return res.status(400).send("Username doesn't exists.");
-  // if (user) return res.status(400).send('Wrong password')
-  res.send(user);
 });
 
 module.exports = router;
