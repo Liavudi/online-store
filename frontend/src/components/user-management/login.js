@@ -4,7 +4,6 @@ import utils from "../../api/utils";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import "./login.css";
-import PropTypes from "prop-types";
 
 const schema = yup
   .object({
@@ -20,7 +19,7 @@ const schema = yup
   })
   .required();
 
-export const Login = ({ setToken }) => {
+export const Login = ({ loginStatus }) => {
   const [showLoginComponent, setLoginComponent] = useState(false);
   const {
     register,
@@ -33,18 +32,26 @@ export const Login = ({ setToken }) => {
   const onSubmit = async (data) => {
     utils.loginUser(data).then((response) => {
       if (response.status === 200) window.location.reload(false);
-      setToken(response.data);
     });
   };
   const onError = (errors, e) => console.log(errors, e);
-  const tokenString = localStorage.getItem("token");
-  const userToken = JSON.parse(tokenString);
+
   return (
     <>
-      {tokenString ? (
-        <div style={{}}>
-        <div>{userToken.token}</div>
-        <div onClick={() => {localStorage.removeItem('token'); window.location.reload(false)}}>Sign Out</div>
+      {loginStatus ? (
+        <div className="after-logged">
+          <div>{loginStatus}</div>
+          <div
+            onClick={() => {
+              utils.logOut().then((res) => {
+                if (res.status === 200) {
+                  window.location.reload(false);
+                }
+              });
+            }}
+          >
+            Sign-out
+          </div>
         </div>
       ) : (
         <div>
@@ -100,8 +107,4 @@ export const Login = ({ setToken }) => {
       )}
     </>
   );
-};
-
-Login.propTypes = {
-  setToken: PropTypes.func.isRequired,
 };

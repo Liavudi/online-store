@@ -2,8 +2,6 @@ const { User, validateNewUser, validateUser } = require("../models/user");
 const express = require("express");
 const router = express.Router();
 
-const callback = (err, res) => console.log("Error: ", err, "Result: ", res);
-
 router.get("/", async (req, res) => {
   const Users = await User.find().sort("name");
   res.send(Users);
@@ -64,30 +62,45 @@ router.delete("/:id", async (req, res) => {
   res.send("user was successfully removed");
 });
 
+router.get("/login", (req, res) => {
+  if (req.session.userId) {
+    return res.send({ loggedIn: true, user: req.session.userId });
+  } else {
+    return res.send({ loggedIn: false });
+  }
+});
+
 router.post("/login", async (req, res) => {
-  // console.log(req.body);
   const { error } = validateUser(req.body);
   if (error) return res.status(400).send(error.details[0].message);
-  User.findOne({ userName: req.body.userName }).exec(function (
-    err,
-    user
-  ) {
+  User.findOne({ userName: req.body.userName }).exec(function (err, user) {
     if (err) throw err;
     if (user === null) {
       return res.status(400).send("Username doesn't exists.");
     }
-    user.comparePassword(req.body.password, function (matchError,isMatch) {
-      if (matchError){
-        return console.log(matchError)
+    user.comparePassword(req.body.password, function (matchError, isMatch) {
+      if (matchError) {
+        return console.log(matchError);
       }
       if (!isMatch) {
-        return res.status(400).send('Invalid password, please try again.')
+        return res.status(400).send("Invalid password, please try again.");
       }
       if (isMatch) {
-        return res.status(200).send({token: user.userName});
+        req.session.userId = user.userName;
+        return res.status(200).send({ token: user.userName });
       }
     });
   });
+});
+
+router.post("/logout", (req, res) => {
+    res.status(200).clearCookie('connect.sid')
+    req.session.destroy(function (err) {
+    res.redirect('/');
+  });
+  
+    
+  
 });
 
 module.exports = router;

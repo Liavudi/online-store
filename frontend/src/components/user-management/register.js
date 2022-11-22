@@ -26,7 +26,7 @@ const schema = yup
       .string()
       .required("Email is required")
       .max(255, "Email must be at most 255 characters")
-      .email('Must be a valid email'),
+      .email("Must be a valid email"),
     password: yup
       .string()
       .required("Password is required")
@@ -39,7 +39,7 @@ const schema = yup
   })
   .required();
 
-export const Register = () => {
+export const Register = ({ loginStatus }) => {
   const [showRegisterComponent, setRegisterComponent] = useState(false);
   const {
     register,
@@ -55,97 +55,99 @@ export const Register = () => {
     });
   };
   const onError = (errors, e) => console.log(errors, e);
-  const tokenString = localStorage.getItem("token");
-  const userToken = JSON.parse(tokenString);
+
   return (
-    <>{tokenString? '': 
-    <div>
-      <div
-        className="register-div"
-        onClick={() => {
-          setRegisterComponent(!showRegisterComponent);
-        }}
-      >
-        Register
-      </div>
-      {showRegisterComponent ? (
+    <>
+      {loginStatus ? (
+        ""
+      ) : (
         <div>
           <div
+            className="register-div"
             onClick={() => {
               setRegisterComponent(!showRegisterComponent);
             }}
-            className="register-container"
-            ></div>
-          <form
-            className="register-inner-container"
-            onSubmit={handleSubmit(onSubmit, onError)}
-            >
-            <div className="title">Sign Up</div>
-            <div className="input-order">
-              <input
-                className="input"
-                placeholder="First Name"
-                {...register("firstName")}
-                />
+          >
+            Register
+          </div>
+          {showRegisterComponent ? (
+            <div>
+              <div
+                onClick={() => {
+                  setRegisterComponent(!showRegisterComponent);
+                }}
+                className="register-container"
+              ></div>
+              <form
+                className="register-inner-container"
+                onSubmit={handleSubmit(onSubmit, onError)}
+              >
+                <div className="title">Sign Up</div>
+                <div className="input-order">
+                  <input
+                    className="input"
+                    placeholder="First Name"
+                    {...register("firstName")}
+                  />
 
-              <input
-                className="input"
-                placeholder="Last Name"
-                {...register("lastName")}
-                />
+                  <input
+                    className="input"
+                    placeholder="Last Name"
+                    {...register("lastName")}
+                  />
 
-              <div className="error-message">
-                <p>{errors.firstName?.message}</p>
-                <p>{errors.lastName?.message}</p>
-              </div>
+                  <div className="error-message">
+                    <p>{errors.firstName?.message}</p>
+                    <p>{errors.lastName?.message}</p>
+                  </div>
+                </div>
+                <div className="input-order">
+                  <input
+                    className="input"
+                    placeholder="Username"
+                    {...register("userName")}
+                  />
+
+                  <input
+                    className="input"
+                    placeholder="Email"
+                    {...register("email")}
+                  />
+
+                  <div className="error-message">
+                    <p>{errors.userName?.message}</p>
+                    <p>{errors.email?.message}</p>
+                  </div>
+                </div>
+                <div className="input-order">
+                  <input
+                    className="input"
+                    type="password"
+                    placeholder="Password"
+                    {...register("password")}
+                  />
+
+                  <input
+                    className="input"
+                    type="number"
+                    placeholder="Age"
+                    {...register("age")}
+                  />
+                  <div className="error-message">
+                    <p>{errors.password?.message}</p>
+                    <p>{errors.age?.message}</p>
+                  </div>
+                </div>
+                <button className="submit-btn" type="submit" value="Submit">
+                  Sign Up
+                </button>
+              </form>
             </div>
-            <div className="input-order">
-              <input
-                className="input"
-                placeholder="Username"
-                {...register("userName")}
-                />
-
-              <input
-                className="input"
-                placeholder="Email"
-                {...register("email")}
-                />
-
-              <div className="error-message">
-                <p>{errors.userName?.message}</p>
-                <p>{errors.email?.message}</p>
-              </div>
-            </div>
-            <div className="input-order">
-              <input
-                className="input"
-                type="password"
-                placeholder="Password"
-                {...register("password")}
-              />
-
-              <input
-                className="input"
-                type="number"
-                placeholder="Age"
-                {...register("age")}
-                />
-              <div className="error-message">
-                <p>{errors.password?.message}</p>
-                <p>{errors.age?.message}</p>
-              </div>
-            </div>
-            <button className="submit-btn" type="submit" value="Submit">
-              Sign Up
-            </button>
-          </form>
+          ) : (
+            ""
+          )}
         </div>
-      ) : (
-        ""
-        )}
-    </div>
-  }
+      )}
     </>
   );
 };

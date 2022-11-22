@@ -22,8 +22,22 @@ const getItemByKeyword = (keyword) => {
   return axios.get(`http://localhost:8000/api/items/search/${keyword}`);
 };
 
-const loginUser = (credentials) => {
-  return axios.post("http://localhost:8000/api/users/login", credentials);
+const loginUser = (userCredentials) => {
+  return axios.post("http://localhost:8000/api/users/login", userCredentials, {
+    withCredentials: true,
+  });
+};
+
+const getLogged = () => {
+  return axios.get("http://localhost:8000/api/users/login", {
+    withCredentials: true,
+  });
+};
+
+const logOut = () => {
+  return axios.post("http://localhost:8000/api/users/logout", {
+    withCredentials: true,
+  });
 };
 
 const registerUser = (data) => {
@@ -40,4 +54,6 @@ export default {
   loginUser,
   getItemsByCategory,
   getItemByKeyword,
+  getLogged,
+  logOut,
 };

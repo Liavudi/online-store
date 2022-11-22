@@ -79,3 +79,10 @@
     justify-content: space-evenly;
     height: 3%;
 }
+.after-logged{
+    display: flex;
+    justify-content: space-evenly;   
+    justify-self: flex-start;
+    align-items: center;
+    width: 100%;
+}
