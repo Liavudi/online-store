@@ -1,6 +1,7 @@
 const Joi = require("joi");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const { string } = require("joi");
 
 const SALT_WORK_FACTOR = 10;
 
@@ -43,7 +44,10 @@ const UserSchema = new mongoose.Schema({
     required: true,
     min: 18,
   },
-  isAdmin: Boolean,
+  role: {
+    type: String,
+    default: 'user'
+  }
 });
 
 UserSchema.pre("save", async function save(next) {
@@ -77,6 +81,7 @@ function validateNewUser(user) {
     email: Joi.string().max(255).required().lowercase().email(),
     password: Joi.string().required().max(50).min(6),
     age: Joi.number().required().min(18),
+    role: Joi.string(),
   });
   return schema.validate(user);
 }

@@ -64,7 +64,7 @@ router.delete("/:id", async (req, res) => {
 
 router.get("/login", (req, res) => {
   if (req.session.userId) {
-    return res.send({ loggedIn: true, user: req.session.userId });
+    return res.send({ loggedIn: true, user: req.session.userId, role: req.session.userRole });
   } else {
     return res.send({ loggedIn: false });
   }
@@ -87,7 +87,8 @@ router.post("/login", async (req, res) => {
       }
       if (isMatch) {
         req.session.userId = user.userName;
-        return res.status(200).send({ token: user.userName });
+        req.session.userRole = user.role
+        return res.status(200).send('Logged in successfully!');
       }
     });
   });
@@ -95,15 +96,15 @@ router.post("/login", async (req, res) => {
 
 router.get("/logout", (req, res) => {
   if (req.session) {
-    req.session.destroy((err) => {
+    req.session.destroy(err => {
       if (err) {
-        res.status(400).send("Unable to log out");
+        res.status(400).send('Unable to log out')
       } else {
-        res.send("Logout successful");
+        res.send('Logout successful')
       }
     });
   } else {
-    res.end();
+    res.end()
   }
 });
 
