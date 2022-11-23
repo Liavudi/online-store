@@ -35,7 +35,7 @@ const getLogged = () => {
 };
 
 const logOut = () => {
-  return axios.post("http://localhost:8000/api/users/logout", {
+  return axios.get("http://localhost:8000/api/users/logout", {
     withCredentials: true,
   });
 };
