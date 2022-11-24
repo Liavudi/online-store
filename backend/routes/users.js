@@ -1,4 +1,4 @@
-const { User, validateNewUser, validateUser } = require("../models/user");
+const { User, validateNewUser, validateUser, validateUpdatedUser } = require("../models/user");
 const express = require("express");
 const router = express.Router();
 
@@ -31,7 +31,7 @@ router.post("/", async (req, res) => {
 
 // TODO Check if it works at expected (need to implement that it checks both password if they got the same hash)
 router.put("/:id", async (req, res) => {
-  const { error } = validateNewUser(req.body);
+  const { error } = validateUpdatedUser(req.body);
 
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -41,8 +41,8 @@ router.put("/:id", async (req, res) => {
       userName: req.body.userName,
       name: req.body.name,
       email: req.body.email,
-      password: req.body.password,
-      age: req.body.email,
+      age: req.body.age,
+      role: req.body.role
     },
     { new: true }
   );

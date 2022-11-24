@@ -40,7 +40,7 @@ export const Login = ({ loginStatus }) => {
     <>
       {loginStatus ? (
         <div className="after-logged">
-          <div>{loginStatus}</div>
+          <div>Hi {loginStatus}</div>
           <div
             onClick={() => {
               utils.logOut().then((res) => {

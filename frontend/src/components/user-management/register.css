@@ -51,7 +51,7 @@
     align-self: center;
     height: 30px;
     margin: 15px;
-    background-color: rgb(2, 146, 33);
+    background-color: rgba(4, 69, 167, 0.904);
     border: none;
     border-radius: 5px;
     width: 30%;
@@ -59,7 +59,7 @@
 }
 
 .submit-btn:hover{
-    background-color: rgb(0, 194, 42);
+    background-color: rgba(17, 80, 173, 0.904);
     cursor: pointer;
 }
 

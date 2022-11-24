@@ -85,6 +85,18 @@ function validateNewUser(user) {
   });
   return schema.validate(user);
 }
+function validateUpdatedUser(user) {
+  const schema = Joi.object({
+    userName: Joi.string().min(4).max(50).required().lowercase(),
+    firstName: Joi.string().min(3).max(50).required(),
+    lastName: Joi.string().min(3).max(50).required(),
+    email: Joi.string().max(255).required().lowercase().email(),
+    age: Joi.number().required().min(18),
+    role: Joi.string(),
+  });
+  return schema.validate(user);
+}
+
 function validateUser(user) {
   const schema = Joi.object({
     userName: Joi.string().min(4).max(50).required().lowercase(),
@@ -96,3 +108,4 @@ function validateUser(user) {
 exports.User = User;
 exports.validateNewUser = validateNewUser;
 exports.validateUser = validateUser;
+exports.validateUpdatedUser = validateUpdatedUser;

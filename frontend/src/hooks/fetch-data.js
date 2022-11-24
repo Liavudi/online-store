@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { increment, initiateState } from "../App/item-catalog-slice";
+import { increment, initiateState } from "../redux/reducers/item-catalog-slice";
 import axios from "axios";
 
 const FetchNewData = () => {

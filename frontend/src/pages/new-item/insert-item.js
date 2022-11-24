@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import "./insert-item.css";
 import utils from "../../api/utils";
-import { selectCount } from "../../App/item-catalog-slice";
+import { selectCount } from "../../redux/reducers/item-catalog-slice";
 
 export const InsertItem = () => {
   const navigate = useNavigate();
@@ -35,7 +35,6 @@ export const InsertItem = () => {
     { name: "Displays" },
     { name: "Phones" },
   ];
-  
 
   const categoriesMap = categories.map((c, i) => {
     return (

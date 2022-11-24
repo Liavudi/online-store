@@ -28,18 +28,19 @@ const loginUser = (userCredentials) => {
   });
 };
 
-const getLogged = () => {
-  return axios.get("http://localhost:8000/api/users/login", {
-    withCredentials: true,
-  });
-};
-
 const logOut = () => {
   return axios.get("http://localhost:8000/api/users/logout", {
     withCredentials: true,
   });
 };
+const checkLoggedIn = async (preloadedState) => {
+  let data = await axios.get("http://localhost:8000/api/users/login", {
+    withCredentials: true,
+  })
+  preloadedState = data.data
+  return preloadedState
 
+};
 const registerUser = (data) => {
   return axios.post("http://localhost:8000/api/users", data);
 };
@@ -54,6 +55,5 @@ export default {
   loginUser,
   getItemsByCategory,
   getItemByKeyword,
-  getLogged,
-  logOut,
+  logOut,checkLoggedIn
 };
